@@ -1,38 +1,141 @@
-.App {
-  text-align: center;
+:root {
+    --black: #000;
+    --blue:#1C69D4;
+    --hover-blue:#0653B6;
+    --border-color: rgba(212, 212, 212, 0.7);
+    --dark-gray: #262626;
+    --grey: #6b6b6b;
+    --light-grey: rgb(214, 211, 211);
+    --lightest-grey: rgba(223, 219, 219, 0.7);
+    --white: #fff;
+    --yellow: #f5af19;
+    --orange: #f17d11;
+    
+    --border-hover-color:var(--blue);
+    --text-color: var(--dark-gray);
+    --hero-text-color: #fff;
+    --gradient: linear-gradient(to right, #f12711, #f5af19);
+    
+    --primary-font: Arial, Helvetica, sans-serif;
+    
+    /* pc font sizes */
+    --title-fs:5.8rem;
+    --fw-light :300;
+    --subtitle-fs: 2.4rem;
+    --text-sm: 1.4rem;
+    --text-fs: 1.6rem;
+    --footer-nav-title: 2rem;
+    --subtitle-fw: 500;
+    
+    --icon-fs: 1.8rem;
+    --icon-fw: 400;
+    --btn-fw: 700;
+    --text-fw: 100;
+    
+    /* mobile font sizes */
+    --title-mb-fs: 2.3rem;
+    --title-mb-fw: 700;
+    --subtitle-mb-fs: 1.5rem;
+    --text-mb-fs: 1.125rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+    font-size: 62.5%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+*, ::after, ::before {
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+i, select, option{
+    font-size: var(--text-sm) !important;
 }
 
-.App-link {
-  color: #61dafb;
+body {
+    margin: 0px;
+    position: relative;
+    font-size: var(--text-fs) !important;
+    font-weight: var(--text-fw);
+    color: var(--text-color);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container {
+    max-width: 100% !important;
+    width: 92.5% !important;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.nav-link {
+    font-size: var(--text-sm) !important;
+    color: var(--hero-text-color) !important;
+    font-weight: 600 !important;
+    padding-inline: 1rem !important;
+}
+
+.dropdown-item {
+    color: var(--dark-gray) !important;
+    padding: .2rem 1.3rem !important;
+    font-weight: 400 !important;
+    font-size: var(--text-sm) !important;
+}
+
+.nav-item:hover, .nav-link:hover {
+    background: var(--orange);
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    border-radius: 0;
+    border: none;
+    margin: 0 !important;
+    padding-right: .8rem
+}
+
+.navbar-toggler {
+    border-color: white !important;
+    background-color: white !important
+}
+
+.title {
+    font-size: var(--title-fs);
+    font-weight: var(--text-fw);
+    line-height: 6.4rem;
+}
+
+.hero-title {
+    font-weight: 800 !important;
+}
+
+.subtitle {
+    font-size: var(--subtitle-fs);
+    font-weight: var(--subtitle-fw);
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+header {
+    background-image: linear-gradient(315deg, #15181a64 0%, #02162a5a 74%), url(./assets/images/busbg.jpg) ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 86vh;
+    position: static;
+    margin-top: -5rem;
+    z-index: -1;
+    color: var(--hero-text-color) !important;
+}
+
+.btn-colored {
+    border: none !important;
+    background: var(--gradient);
+    padding: 1.2rem .5rem !important
 }
