@@ -1,12 +1,12 @@
-import { Row, Button, Container, Carousel } from "react-bootstrap"
+import { Row, Button, Container, Col } from "react-bootstrap"
 import BookingSection from "../components/BookingSection"
 import TextCard from "../components/TextCard"
 import BlogCard from "../components/BlogCard"
 import Showcase from "../components/Showcase"
 import CarouselComp from "../components/CarouselComp"
-import Footer from "../components/Footer"
 
-function Home() {
+function Home({data}) {
+    const posts = data
     return (
         <>
             <header>
@@ -22,9 +22,16 @@ function Home() {
             <BookingSection />
             <TextCard />
             <Showcase />
-            <BlogCard />
+            <Container>
+                <Row>
+                {posts.map(post => (
+                    <Col id={post.id} sm={6} md={4} lg={4}>
+                        <BlogCard post = {post} />
+                    </Col>
+                ))}
+            </Row>
+            </Container>
             <CarouselComp />
-            <Footer />
         </>
     )
 }
