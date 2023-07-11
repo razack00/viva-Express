@@ -1,44 +1,44 @@
-import {Card, Row, Col, Container} from 'react-bootstrap'
+import { Row, Col, Container} from 'react-bootstrap'
 
 function Footer() {
   return (
-    <div>
-        <Container>
+    <div className='bg-dark py-5'  data-bs-theme="dark">
+        <Container className='text-white' data-bs-theme="dark">
             <Row>
-                <Col>
+                <Col className='text-left pt-4' sm={6} md={4} lg={3}>
                     <h2>Bus Travel</h2>
-                    <ul>
+                    <ul className='p-0'>
                         <li>All Buses</li>
                         <li>All Buses</li>
                         <li>All Buses</li>
                     </ul>
-                </Col>
-                <Col>
+                </Col >
+                <Col className='text-left pt-4' sm={6} md={4} lg={3}>
                     <h2>Bus Travel</h2>
-                    <ul>
+                    <ul className='p-0'>
                         <li>All Buses</li>
                         <li>All Buses</li>
                         <li>All Buses</li>
                     </ul>
-                </Col>
-                <Col>
+                </Col >
+                <Col className='text-left pt-4' sm={6} md={4} lg={3}>
                     <h2>Bus Travel</h2>
-                    <ul>
+                    <ul className='p-0'>
                         <li>All Buses</li>
                         <li>All Buses</li>
                         <li>All Buses</li>
                     </ul>
-                </Col>
-                <Col>
+                </Col >
+                <Col className='text-left pt-4' sm={6} md={4} lg={3}>
                     <h2>Bus Travel</h2>
-                    <ul>
+                    <ul className='p-0'>
                         <li>All Buses</li>
                         <li>All Buses</li>
                         <li>All Buses</li>
                     </ul>
-                </Col>
+                </Col >
             </Row>
-            <div>Copyright 2023</div>
+            <div className='text-center pt-5'>Copyright 2023</div>
         </Container>
     </div>
   );
