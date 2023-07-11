@@ -8,13 +8,14 @@
     --light-grey: rgb(214, 211, 211);
     --lightest-grey: rgba(223, 219, 219, 0.7);
     --white: #fff;
-    --yellow: #f5af19;
-    --orange: #f17d11;
+    --lightblue: #00c6ff;
+    --blue: #0072ff;
     
     --border-hover-color:var(--blue);
     --text-color: var(--dark-gray);
     --hero-text-color: #fff;
-    --gradient: linear-gradient(to right, #f12711, #f5af19);
+    --gradient: linear-gradient(to right, #00c6ff 0%, #0072ff  51%, #00c6ff  100%);
+    --hover-gradient: linear-gradient(to right, #00c6ff 25%, #0072ff  100%);
     
     --primary-font: Arial, Helvetica, sans-serif;
     
@@ -75,7 +76,12 @@ a:link {
 .btn-colored {
     border: none !important;
     background: var(--gradient);
-    padding: 1rem .5rem !important
+    padding: 1rem .5rem !important;
+    transition: 3s;
+}
+
+.btn-colored:hover {
+    background: var(--hover-gradient);  
 }
 /* End General Styles */
 
@@ -95,7 +101,7 @@ a:link {
 }
 
 .nav-item:hover, .nav-link:hover {
-    background: var(--orange);
+    background: var(--blue);
 }
 
 .nav-item.dropdown:hover .dropdown-menu {
@@ -133,10 +139,10 @@ a:link {
 }
 
 header {
-    background-image: linear-gradient(315deg, #15181a64 0%, #02162a5a 74%), url(./assets/images/busbg.jpg) ;
-    background-size: cover;
+    background-image: linear-gradient(315deg, #15181a64 0%, #02162a5a 74%), url(../public/images/busbg.jpg) ;
+    background-size:cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom;
     height: 86vh;
     position: static;
     margin-top: -5rem;
@@ -154,3 +160,24 @@ input[type="radio"], .form-select{
     border-color: #989898 !important;
 }
 /* End Bookind section styles */
+
+
+
+
+
+    .btn-grad {
+        margin: 10px;
+        padding: 15px 45px;
+        text-align: center;
+        text-transform: uppercase;
+        
+        background-size: 200% auto;
+        color: white;            
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+      }
+
+
+     
+ 
