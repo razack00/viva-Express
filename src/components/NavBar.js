@@ -2,6 +2,7 @@ import { Row, Col, Container } from 'react-bootstrap/';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { LinkContainer } from 'react-router-bootstrap';
 
 function NavBar() {
   return (
@@ -17,40 +18,34 @@ function NavBar() {
             </select>
         </Col>
       </Row>
-      <Navbar expand="lg" className="bg-transparent">
+      <Navbar expand="lg" className="bg-dark">
         <Container fluid className='d-flex container'>
           <Navbar.Brand href="#home">
-              <span className="hero-moto flex fs-3 text-white"><p>The <b>Ultimate</b> Driving Machine</p></span>
+            <Row>
+              <Col style={{height:"fit-content"}}>
+                <img src='/images/bglogo.jpg' alt='logo' width="40px" className='mt-0'></img>
+              </Col>
+              <Col className='m-auto'>
+                <span className="hero-moto flex fs-3 text-white"><p>The <b>Ultimate</b> Driving Machine</p></span>
+              </Col>
+            </Row>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav border-white bg-white" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto w-100 justify-content-end">
-              <Nav.Link className='nav-item' href="#home">HOME</Nav.Link>
-              <NavDropdown title="ABOUT COMPANY" id="dropdown-autoclose-true" renderMenuOnMount={true}>
-                <NavDropdown.Item href="#action/3.1">OUR ORGANISATION</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  HISTORY AND PRESENTATION
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">OUR NETWORK</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">
-                  OUR VALUES
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">
-                  OUR PARTNERS
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">
-                  JOBS AND CAREERS
-                </NavDropdown.Item>
-              </NavDropdown>
+              <LinkContainer to="/">
+                <Nav.Link className='nav-item'>HOME</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/about">
+                <Nav.Link>ABOUT COMPANY</Nav.Link>
+              </LinkContainer>
               <NavDropdown title="SERVICES" id="basic-nav-dropdown" renderMenuOnMount={true}>
-                <NavDropdown.Item href="#action/3.1">BUSINESS CLASS</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  FIRST CLASS
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">CLASSIC</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">
-                  COURIER SERVICE
-                </NavDropdown.Item>
+              <LinkContainer to="/about">
+                <NavDropdown.Item>TRANSPORTATION</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/">
+                <NavDropdown.Item>COURIER SERVICES</NavDropdown.Item>
+              </LinkContainer>
               </NavDropdown>
               <NavDropdown title="PLAN YOUR JOURNEY" id="basic-nav-dropdown" renderMenuOnMount={true}>
                 <NavDropdown.Item href="#action/3.1">SCHEDULES & RATES</NavDropdown.Item>
@@ -62,18 +57,12 @@ function NavBar() {
                   TICKET INFORMATION
                 </NavDropdown.Item>
               </NavDropdown>
-              <NavDropdown title="MEDIA" id="basic-nav-dropdown" renderMenuOnMount={true}>
-                <NavDropdown.Item href="#action/3.1">BLOG</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  GALLERY
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown title="CONTACT" id="basic-nav-dropdown" renderMenuOnMount={true}>
-                <NavDropdown.Item href="#action/3.1">CUSTOMER SUPPORT</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  BOOKING
-                </NavDropdown.Item>
-              </NavDropdown>
+              <LinkContainer to="/blog">
+                <Nav.Link>BLOG</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/contact">
+                <Nav.Link>CONTACT</Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>
