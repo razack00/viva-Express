@@ -1,5 +1,6 @@
 
 import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function BlogCard({post}) {
   return (
@@ -10,7 +11,7 @@ function BlogCard({post}) {
         <Card.Text>
          {post.body.slice(0, 100)}... 
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Link to={`/blogs/${post.id}`}> Read More </Link> 
       </Card.Body>
     </Card>    
   );

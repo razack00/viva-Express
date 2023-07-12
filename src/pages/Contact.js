@@ -2,7 +2,10 @@ import ContactForm from '../components/ContactForm'
 
 function Contact() {
   return (
-    <ContactForm />
+    <>
+         <h1 className="py-5 text-center">ABOUT</h1>
+         <ContactForm />
+    </>
   );
 }
 

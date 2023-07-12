@@ -5,7 +5,7 @@ import BlogCard from "../components/BlogCard"
 import Showcase from "../components/Showcase"
 import CarouselComp from "../components/CarouselComp"
 
-function Home({data}) {
+function Home({data, travelSearchList}) {
     const posts = data
     return (
         <>
@@ -19,7 +19,7 @@ function Home({data}) {
                     </Row>
                 </Container>
             </header>
-            <BookingSection />
+            <BookingSection travelSearchList={travelSearchList} />
             <TextCard />
             <Showcase />
             <Container>
