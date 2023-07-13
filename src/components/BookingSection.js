@@ -1,54 +1,46 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 
 function BookingSection({travelSearchList}) {
-    const buses = travelSearchList
-
+    const [buses, setBuses] = useState(travelSearchList)
     const [origin, setOrigin] = useState("")
     const [destination, setDestination] = useState("")
+    const [modalInfo, setmodalInfo] = useState(false)
+    const [show, setShow] = useState(false);
+    const [routes, setRoutes] = useState([])
 
-    
-    const route_is_valid = (buses, origin, destination) => {
-        buses.forEach(bus => {
-            if(bus.origin === origin && bus.destination === destination) {
-                return true
-            }
-            console.log(`yo${bus.origin}`)
-        });
-        console.log(destination)
-        return false
+    const filteredRoutes = () => { 
+        setRoutes(buses.filter(bus => bus.origin === origin && bus.destination === destination))
     }
+    filteredRoutes()
     
+    const handleSubmit = () => {
+        if(routes.length > 0) {
+            setmodalInfo(true)
+            handleShow()
+        }
+    }
+
     // updating states
     const onOriginChange = (e) => {
         setOrigin(e.target.value)
     }
-
     const onDestinationChange = (e) => {
         setDestination(e.target.value)
     }
 
-    // handling submit
-    const handleSubmit = () => {
-        const is_valid = route_is_valid(buses, origin, destination)
-        if(is_valid) {
-            console.log("hello")
-        }else {
-            console.log("bad")
-        }
-    }
+    useEffect(() => {
+        filteredRoutes()
+    }, [routes])
 
     // Modal toggle
-    const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-  return (
+    return (
     <Container className='bg-white rounded-4 px-5 py-4 shadow' style={{marginTop: "-76px"}}>
         <Form className='d-flex flex-column gap-5 py-4'>
 
@@ -70,7 +62,7 @@ function BookingSection({travelSearchList}) {
                     <Form.Select 
                         onChange={onDestinationChange}
                         value={destination}
-                        aria-label="Default select example">
+                        aria-label="Default select example">;
                         {buses.map(bus => (
                             <option key={bus.id} value={bus.destination}>{bus.destination}</option>
                         ))}
@@ -111,12 +103,13 @@ function BookingSection({travelSearchList}) {
                     <Button style={{width: "100%", paddingBlock: "10px", margin: '0'}} variant="primary" onClick={handleSubmit}>
                         Search
                     </Button>
-
-                    <Modal show={show} onHide={handleClose}>
+                    {modalInfo && (<Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
+                        <Modal.Title>Woohoo, Bus {routes[0].id} is available</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+                        <Modal.Body>
+                            <h1>{`${routes[0].origin} - ${routes[0].destination}`}</h1>
+                        </Modal.Body>
                         <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Close
@@ -125,7 +118,7 @@ function BookingSection({travelSearchList}) {
                             Save Changes
                         </Button>
                         </Modal.Footer>
-                    </Modal>
+                    </Modal>)}
                 </div>
             </Row>
         </Form>
