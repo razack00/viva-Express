@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Details from './pages/Details';
+import Reservation from './pages/Reservation'
 
 function App() {
   return (
@@ -19,11 +20,12 @@ function App() {
       <Router>
       <NavBar />
         <Routes>
-          <Route path='/' element={<Home data={data} travelSearchList={travelSearchList} />} exact />
+          <Route path='/viva-Express' element={<Home data={data} travelSearchList={travelSearchList} />} exact />
           <Route path='/blog' element={<Blog data={data}/>} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/blogs/:id' element={<Details />} />
+          <Route path='/reservation' element={<Reservation />} />
         </Routes>
       <Footer/>
       </Router>
