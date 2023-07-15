@@ -1,28 +1,15 @@
-import { Col, Container, Row } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Col, Container, Row, Button, Form, Modal } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import Modal from 'react-bootstrap/Modal';
+import { Link } from 'react-router-dom';
 
 function BookingSection({travelSearchList}) {
     const [buses, setBuses] = useState(travelSearchList)
     const [origin, setOrigin] = useState("")
     const [destination, setDestination] = useState("")
-    const [modalInfo, setmodalInfo] = useState(false)
     const [show, setShow] = useState(false);
-    const [routes, setRoutes] = useState([])
-
-    const filteredRoutes = () => { 
-        setRoutes(buses.filter(bus => bus.origin === origin && bus.destination === destination))
-    }
-    filteredRoutes()
+    const [routes, setRoutes] = useState([]);
     
-    const handleSubmit = () => {
-        if(routes.length > 0) {
-            setmodalInfo(true)
-            handleShow()
-        }
-    }
+
 
     // updating states
     const onOriginChange = (e) => {
@@ -31,14 +18,26 @@ function BookingSection({travelSearchList}) {
     const onDestinationChange = (e) => {
         setDestination(e.target.value)
     }
-
-    useEffect(() => {
-        filteredRoutes()
-    }, [routes])
-
-    // Modal toggle
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    useEffect(() => {
+        setRoutes(buses.filter(bus => bus.origin === origin && bus.destination === destination))
+        console.log('useEffect ran')
+    }, [show])
+
+    const filteredRoutes = () => { 
+        console.log(routes)
+        handleShow()
+    }
+    
+    const handleSubmit = () => {
+        filteredRoutes()
+    }
+
+
+
+    // Modal toggle
 
     return (
     <Container className='bg-white rounded-4 px-5 py-4 shadow' style={{marginTop: "-76px"}}>
@@ -52,9 +51,9 @@ function BookingSection({travelSearchList}) {
                         value={origin}
                         id='from' 
                         aria-label="Default select example">
-                        {buses.map(bus => (
-                            <option key={bus.id} value={bus.origin}>{bus.origin}</option>
-                        ))}
+                            <option>Enter origin</option>
+                            <option value="Yaounde">Yaounde</option>
+                            <option value="Douala">Douala</option>
                     </Form.Select>
                 </Col>
                 <Col>
@@ -62,10 +61,10 @@ function BookingSection({travelSearchList}) {
                     <Form.Select 
                         onChange={onDestinationChange}
                         value={destination}
-                        aria-label="Default select example">;
-                        {buses.map(bus => (
-                            <option key={bus.id} value={bus.destination}>{bus.destination}</option>
-                        ))}
+                        aria-label="Default select example">
+                            <option>Enter destination</option>
+                            <option value="Yaounde">Yaounde</option>
+                            <option value="Douala">Douala</option>
                     </Form.Select>
                 </Col>
                 <Col>
@@ -90,12 +89,14 @@ function BookingSection({travelSearchList}) {
                             type="radio"
                             id="radio"
                             label="One Way"
-                        />
+                            name = "One"
+                           />
                         <Form.Check
                             inline
                             type="radio"
                             id="radio"
                             label="Round Trip"
+                            name = "One"
                         />
                     </Form.Group>
                 </Col>
@@ -103,22 +104,25 @@ function BookingSection({travelSearchList}) {
                     <Button style={{width: "100%", paddingBlock: "10px", margin: '0'}} variant="primary" onClick={handleSubmit}>
                         Search
                     </Button>
-                    {modalInfo && (<Modal show={show} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                        <Modal.Title>Woohoo, Bus {routes[0].id} is available</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <h1>{`${routes[0].origin} - ${routes[0].destination}`}</h1>
-                        </Modal.Body>
-                        <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            Save Changes
-                        </Button>
-                        </Modal.Footer>
-                    </Modal>)}
+                    <Modal  show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                    </Modal.Header>
+                    {routes.map(route => (
+                        <div key={route.id}>
+                            <Modal.Title className='px-4'>Bus {routes.id} is available</Modal.Title>
+                            <Modal.Body>
+                                <h1>{`${route.origin} - ${route.destination}`}</h1>
+                                <h3>{route.type}</h3>
+                            </Modal.Body>
+                            <Modal.Footer>
+                            <Link to={"/reservation"} variant="secondary" onClick={handleClose}>
+                                Reserve
+                            </Link>
+                            </Modal.Footer>
+                        </div>
+                       ))
+                    }
+                    </Modal>
                 </div>
             </Row>
         </Form>
