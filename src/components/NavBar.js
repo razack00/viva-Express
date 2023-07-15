@@ -33,7 +33,7 @@ function NavBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav border-white bg-white" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto w-100 justify-content-end">
-              <LinkContainer to="/">
+              <LinkContainer to="viva-Express">
                 <Nav.Link className='nav-item'>HOME</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/about">
