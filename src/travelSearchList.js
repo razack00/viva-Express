@@ -23,6 +23,7 @@ const travelSearchList = [
         "type": 'economic class',
         "departure_time": "10:00 AM",
         "arrival_time": "6:00 PM",
+        "VIP": true
     },
 ]
 
