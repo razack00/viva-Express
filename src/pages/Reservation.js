@@ -52,33 +52,29 @@ const Reservation = () => {
                     </Col>
                 </Row>
                 <Row className='pt-5'>
-                <Col>
-                    <Form.Label htmlFor="from">First Name</Form.Label>
-                    <Form.Control className='py-3' type="text" placeholder="First Name" />
-                </Col>
-                <Col>
-                    <Form.Label htmlFor="to">Last Name</Form.Label>
-                    <Form.Control className='py-3' type="text" placeholder="Last Name" />
-                </Col>
-                <Col>
-                    <Form.Label htmlFor="disabledSelect">Date of Departure</Form.Label>
-                    <Form.Control style={{paddingBlock: "9px", borderColor: "lightgrey", color: 'darkgray'}} type="date"/>
-                </Col>
-            </Row>
-            <Row className='py-4'>
-                <Col>
-                    <Form.Label htmlFor="from">ID Number</Form.Label>
-                    <Form.Control className='py-3' type="text" placeholder="ID Number" />
-                </Col>
-                <Col>
-                    <Form.Label htmlFor="to">Phone</Form.Label>
-                    <Form.Control className='py-3' type="tel" placeholder="phone" />
-                </Col>
-                <Col>
-                    <Form.Label htmlFor="Email">Email</Form.Label>
-                    <Form.Control className='py-3' type="text" placeholder="Email" />
-                </Col>
-            </Row>
+                    <Col>
+                        <Form.Label htmlFor="from">First Name</Form.Label>
+                        <Form.Control className='py-3' type="text" placeholder="First Name" />
+                    </Col>
+                    <Col>
+                        <Form.Label htmlFor="to">Last Name</Form.Label>
+                        <Form.Control className='py-3' type="text" placeholder="Last Name" />
+                    </Col>
+                    <Col>
+                        <Form.Label htmlFor="disabledSelect">Date of Departure</Form.Label>
+                        <Form.Control style={{paddingBlock: "9px", borderColor: "lightgrey", color: 'darkgray'}} type="date"/>
+                    </Col>
+                </Row>
+                <Row className='py-4'>
+                    <Col>
+                        <Form.Label htmlFor="from">ID Number</Form.Label>
+                        <Form.Control className='py-3' type="text" placeholder="ID Number" />
+                    </Col>
+                    <Col>
+                        <Form.Label htmlFor="to">Phone</Form.Label>
+                        <Form.Control className='py-3' type="tel" placeholder="phone" />
+                    </Col>
+                </Row>
             <div className='d-flex justify-content-end'>
                 <Button className='m-50' style={{width: "10%", paddingBlock: "10px", }} variant="primary">
                     Submit
