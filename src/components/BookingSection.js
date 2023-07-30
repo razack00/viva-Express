@@ -8,9 +8,9 @@ function BookingSection({travelSearchList}) {
     const [destination, setDestination] = useState("")
     const [show, setShow] = useState(false);
     const [routes, setRoutes] = useState([]);
+    const [message, setmessage] = useState([])
 
     const [date] = useState(new Date().toLocaleDateString())
-    console.log(date)
     
     // updating states
     const onOriginChange = (e) => {
@@ -27,17 +27,19 @@ function BookingSection({travelSearchList}) {
         console.log('useEffect ran')
     }, [show])
 
-    const filteredRoutes = () => { 
-        console.log(routes)
-        handleShow()
-    }
-    
+    // const filteredRoutes = () => { 
+    //     console.log(routes)
+    //     handleShow()
+    // }
+
     const handleSubmit = () => {
-        filteredRoutes()
+        if(routes.length > 0) {
+            handleShow()
+        }
     }
-
-
-
+    console.log(routes)
+    console.log(message)
+    
     // Modal toggle
 
     return (
@@ -144,10 +146,6 @@ function BookingSection({travelSearchList}) {
                                                 </div>
                                             </ListGroup.Item>
                                         </ListGroup>
-                                        <div className="px-0">
-                                            <h1>{`${route.origin} - ${route.destination}`}</h1>
-                                            <h3>{route.type}</h3>
-                                        </div>
                                     </Col>
                                     <Col>
                                         <ListGroup as="ol">
@@ -187,29 +185,29 @@ function BookingSection({travelSearchList}) {
                         <Row className='pt-5'>
                             <Col>
                                 <Form.Label htmlFor="from">First Name</Form.Label>
-                                <Form.Control className='py-3' type="text" placeholder="First Name" />
+                                <Form.Control className='py-3 fs-5' type="text" placeholder="First Name" />
                             </Col>
                             <Col>
                                 <Form.Label htmlFor="to">Last Name</Form.Label>
-                                <Form.Control className='py-3' type="text" placeholder="Last Name" />
+                                <Form.Control className='py-3 fs-5' type="text" placeholder="Last Name" />
                             </Col>
                             <Col>
                                 <Form.Label htmlFor="disabledSelect">Date of birth</Form.Label>
-                                <Form.Control style={{paddingBlock: "9px", borderColor: "lightgrey", color: 'darkgray'}} type="date"/>
+                                <Form.Control className='fs-5' style={{paddingBlock: "9px", borderColor: "lightgrey", color: 'darkgray'}} type="date"/>
                             </Col>
                         </Row>
                         <Row className='py-4'>
                             <Col>
                                 <Form.Label htmlFor="from">ID Number</Form.Label>
-                                <Form.Control className='py-3' type="text" placeholder="ID Number" />
+                                <Form.Control className='py-3 fs-5' type="text" placeholder="ID Number" />
                             </Col>
                             <Col>
                                 <Form.Label htmlFor="to">Phone</Form.Label>
-                                <Form.Control className='py-3' type="tel" placeholder="phone" />
+                                <Form.Control className='py-3 fs-5' type="tel" placeholder="phone" />
                             </Col>
                             <Col>
                                 <Form.Label htmlFor="Email">Email</Form.Label>
-                                <Form.Control className='py-3' type="text" placeholder="Email" />
+                                <Form.Control className='py-3 fs-5' type="text" placeholder="Email" />
                             </Col>
                         </Row>
                         <div className='d-flex justify-content-end'>
