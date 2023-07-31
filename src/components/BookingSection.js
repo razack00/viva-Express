@@ -25,27 +25,29 @@ function BookingSection({travelSearchList}) {
     useEffect(() => {
         setRoutes(buses.filter(bus => bus.origin === origin && bus.destination === destination))
         console.log('useEffect ran')
-    }, [show])
-
-    // const filteredRoutes = () => { 
-    //     console.log(routes)
-    //     handleShow()
-    // }
+    }, [origin, destination])
 
     const handleSubmit = () => {
         if(routes.length > 0) {
             handleShow()
+            setmessage([])
+        }else if(origin == destination) {
+            setmessage("Invalid Route. Choose a valid route")
+        }else {
+            setmessage("No bus for choosen Route")
         }
+    }
+
+    const handleReserve = () => {
+        alert("Seat successfully reserved!")
     }
     console.log(routes)
     console.log(message)
-    
-    // Modal toggle
 
     return (
     <Container className='bg-white rounded-4 px-5 py-4 shadow' style={{marginTop: "-76px"}}>
         <Form className='d-flex flex-column gap-5 py-4'>
-
+            <div className='text-danger'>{message}</div>
             <Row className='d-flex'>
                 <Col>
                     <Form.Label htmlFor="from">Origin</Form.Label>
@@ -185,33 +187,33 @@ function BookingSection({travelSearchList}) {
                         <Row className='pt-5'>
                             <Col>
                                 <Form.Label htmlFor="from">First Name</Form.Label>
-                                <Form.Control className='py-3 fs-5' type="text" placeholder="First Name" />
+                                <Form.Control className='py-3 fs-5' name='from' type="text" placeholder="First Name" required />
                             </Col>
                             <Col>
                                 <Form.Label htmlFor="to">Last Name</Form.Label>
-                                <Form.Control className='py-3 fs-5' type="text" placeholder="Last Name" />
+                                <Form.Control className='py-3 fs-5' type="text" placeholder="Last Name" name='to' required />
                             </Col>
                             <Col>
-                                <Form.Label htmlFor="disabledSelect">Date of birth</Form.Label>
-                                <Form.Control className='fs-5' style={{paddingBlock: "9px", borderColor: "lightgrey", color: 'darkgray'}} type="date"/>
+                                <Form.Label htmlFor="date">Date of birth</Form.Label>
+                                <Form.Control className='fs-5' style={{paddingBlock: "9px", borderColor: "lightgrey", color: 'darkgray'}} type="date" name='date' required/>
                             </Col>
                         </Row>
                         <Row className='py-4'>
                             <Col>
-                                <Form.Label htmlFor="from">ID Number</Form.Label>
-                                <Form.Control className='py-3 fs-5' type="text" placeholder="ID Number" />
+                                <Form.Label htmlFor="id">ID Number</Form.Label>
+                                <Form.Control className='py-3 fs-5' type="text" placeholder="ID Number" name='id' required />
                             </Col>
                             <Col>
-                                <Form.Label htmlFor="to">Phone</Form.Label>
-                                <Form.Control className='py-3 fs-5' type="tel" placeholder="phone" />
+                                <Form.Label htmlFor="phone">Phone</Form.Label>
+                                <Form.Control className='py-3 fs-5' type="tel" placeholder="phone" name='phone' required />
                             </Col>
                             <Col>
-                                <Form.Label htmlFor="Email">Email</Form.Label>
-                                <Form.Control className='py-3 fs-5' type="text" placeholder="Email" />
+                                <Form.Label htmlFor="email">Email</Form.Label>
+                                <Form.Control className='py-3 fs-5' type="email" name='email' placeholder="email" />
                             </Col>
                         </Row>
                         <div className='d-flex justify-content-end'>
-                            <Button className='m-50' style={{width: "10%", paddingBlock: "10px", }} variant="primary">
+                            <Button className='m-50' style={{width: "10%", paddingBlock: "10px", }} variant="primary" onClick={handleReserve}>
                                 Reserve Now
                             </Button>
                         </div>
