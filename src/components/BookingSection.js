@@ -34,7 +34,7 @@ function BookingSection({travelSearchList}) {
         }else if(origin == destination) {
             setmessage("Invalid Route. Choose a valid route")
         }else {
-            setmessage("No bus for choosen Route")
+            setmessage("No bus for choosen Route") 
         }
     }
 
@@ -155,7 +155,7 @@ function BookingSection({travelSearchList}) {
                                                 as="li"
                                                 className="d-flex justify-content-between align-items-start"
                                             >
-                                                <div className="text-primary">Train N°</div>
+                                                <div className="text-primary">Bus N°</div>
                                                 <div bg="primary" className='text-secondary'>
                                                 P0003
                                                 </div>
