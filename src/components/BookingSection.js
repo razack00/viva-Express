@@ -1,6 +1,7 @@
 import { Col, Container, Row, Button, Form, Modal, ListGroup, Badge } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getDefaultNormalizer } from '@testing-library/react';
 
 function BookingSection({travelSearchList}) {
     const [buses, setBuses] = useState(travelSearchList)
@@ -9,24 +10,34 @@ function BookingSection({travelSearchList}) {
     const [show, setShow] = useState(false);
     const [routes, setRoutes] = useState([]);
     const [message, setmessage] = useState([])
+    const [date] = useState(new Date())
+    const [departureDate] = useState(date.toLocaleDateString())
+    const [departureTime] = useState(date.toLocaleTimeString())
+    const [arrivalDate] = useState(new Date(date.getTime() + 3 * 3600000 ))
+    const [arrivalDay] = useState(arrivalDate.toLocaleDateString())
+    const [arrivalTime] = useState(arrivalDate.toLocaleTimeString())
 
-    const [date] = useState(new Date().toLocaleDateString())
-    
-    // updating states
+    console.log(arrivalTime)
+
+    // updating states ( origin and destination)
     const onOriginChange = (e) => {
         setOrigin(e.target.value)
     }
     const onDestinationChange = (e) => {
         setDestination(e.target.value)
     }
+
+    // handling when the models is suppose to display
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // refresh when routes match
     useEffect(() => {
         setRoutes(buses.filter(bus => bus.origin === origin && bus.destination === destination))
         console.log('useEffect ran')
     }, [origin, destination])
 
+    // validating form submittion
     const handleSubmit = () => {
         if(routes.length > 0) {
             handleShow()
@@ -38,11 +49,12 @@ function BookingSection({travelSearchList}) {
         }
     }
 
+    console.log(routes)
+
+    // validating reservations
     const handleReserve = () => {
         alert("Seat successfully reserved!")
     }
-    console.log(routes)
-    console.log(message)
 
     return (
     <Container className='bg-white rounded-4 px-5 py-4 shadow' style={{marginTop: "-76px"}}>
@@ -54,8 +66,7 @@ function BookingSection({travelSearchList}) {
                     <Form.Select 
                         onChange={onOriginChange}
                         value={origin}
-                        id='from' 
-                        aria-label="Default select example">
+                        id='from'>
                             <option>Enter origin</option>
                             <option value="Yaounde">Yaounde</option>
                             <option value="Douala">Douala</option>
@@ -66,15 +77,15 @@ function BookingSection({travelSearchList}) {
                     <Form.Select 
                         onChange={onDestinationChange}
                         value={destination}
-                        aria-label="Default select example">
+                        >
                             <option>Enter destination</option>
                             <option value="Yaounde">Yaounde</option>
                             <option value="Douala">Douala</option>
                     </Form.Select>
                 </Col>
                 <Col>
-                <Form.Label htmlFor="disabledSelect">Type</Form.Label>
-                    <Form.Select aria-label="Default select example">
+                <Form.Label htmlFor="type">Type</Form.Label>
+                    <Form.Select name='type'>
                         <option>Select Class</option>
                         <option value="1">Economic</option>
                         <option value="2">First Class</option>
@@ -82,8 +93,8 @@ function BookingSection({travelSearchList}) {
                     </Form.Select>
                 </Col>
                 <Col>
-                    <Form.Label htmlFor="disabledSelect">Date of Departure</Form.Label>
-                    <Form.Control style={{paddingBlock: "7px", borderColor: "#989898"}} type="date"/>
+                    <Form.Label htmlFor="date">Date of Departure</Form.Label>
+                    <Form.Control style={{paddingBlock: "7px", borderColor: "#989898"}} type="date" name='date'/>
                 </Col>
             </Row>
             <Row className='d-flex justify-content-between'>
@@ -125,13 +136,13 @@ function BookingSection({travelSearchList}) {
                                             >
                                                 <div className="text-secondary">
                                                 <div className="text-primary"> Departure Date</div>
-                                                <div>{date}</div>
+                                                <div>{departureDate}</div>
                                                 <div>{route.departure_time}</div>
                                                 </div>
                                                 <div className=" text-secondary">
                                                 <div className="text-primary"> Arrival Date</div>
-                                                <div>sdfsdfsfsfsfsd</div>
-                                                <div>{route.arrival_time}</div>
+                                                <div>{arrivalDay}</div>
+                                                <div>{arrivalTime}</div>
                                                 </div>
                                             </ListGroup.Item>
                                             <ListGroup.Item

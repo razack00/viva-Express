@@ -6,7 +6,7 @@ const travelSearchList = [
         "destination": "Douala",
         "type": 'first class',
         "departure_time": "10:00 AM",
-        "arrival_time": "6:00 PM",
+        "travel_duration": 3,
     },
     {
         "id": "P0002",
@@ -14,17 +14,17 @@ const travelSearchList = [
         "destination": "Yaounde",
         "type": 'business class',
         "departure_time": "10:00 AM",
-        "arrival_time": "6:00 PM",
+        "travel_duration": 4,
     },
-    {
-        "id": "P0003",
-        "origin": "Douala",
-        "destination": "Yaounde",
-        "type": 'economic class',
-        "departure_time": "10:00 AM",
-        "arrival_time": "6:00 PM",
-        "VIP": true
-    },
+    // {
+    //     "id": "P0003",
+    //     "origin": "Douala",
+    //     "destination": "Yaounde",
+    //     "type": 'economic class',
+    //     "departure_time": "10:00 AM",
+    //     "arrival_time": "6:00 PM",
+    //     "VIP": true
+    // },
 ]
 
 export default travelSearchList;
