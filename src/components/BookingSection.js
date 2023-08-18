@@ -1,4 +1,4 @@
-import { Col, Container, Row, Button, Form, Modal, ListGroup, Badge } from 'react-bootstrap';
+import { Col, Container, Row, Button, Form, Modal, Table} from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getDefaultNormalizer } from '@testing-library/react';
@@ -10,14 +10,6 @@ function BookingSection({travelSearchList}) {
     const [show, setShow] = useState(false);
     const [routes, setRoutes] = useState([]);
     const [message, setmessage] = useState([])
-    const [date] = useState(new Date())
-    const [departureDate] = useState(date.toLocaleDateString())
-    const [departureTime] = useState(date.toLocaleTimeString())
-    const [arrivalDate] = useState(new Date(date.getTime() + 3 * 3600000 ))
-    const [arrivalDay] = useState(arrivalDate.toLocaleDateString())
-    const [arrivalTime] = useState(arrivalDate.toLocaleTimeString())
-
-    console.log(arrivalTime)
 
     // updating states ( origin and destination)
     const onOriginChange = (e) => {
@@ -122,112 +114,30 @@ function BookingSection({travelSearchList}) {
                     </Button>
                 </div>
                 <Modal className='modal-lg' show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
+                    <Modal.Header closeButton>Available buses for your Search
                     </Modal.Header>
                     <Modal.Body className='px-5 py-4'>
                             {routes.map(route => (
-                                <Row key={route.id}>
-                                        <Modal.Title as="h1" className='w-100 text-success'>Bus {route.id} is available</Modal.Title>
-                                    <Col>
-                                        <ListGroup>
-                                            <ListGroup.Item
-                                                as="li"
-                                                className="d-flex justify-content-between align-items-start"
-                                            >
-                                                <div className="text-secondary">
-                                                <div className="text-primary"> Departure Date</div>
-                                                <div>{departureDate}</div>
-                                                <div>{route.departure_time}</div>
-                                                </div>
-                                                <div className=" text-secondary">
-                                                <div className="text-primary"> Arrival Date</div>
-                                                <div>{arrivalDay}</div>
-                                                <div>{arrivalTime}</div>
-                                                </div>
-                                            </ListGroup.Item>
-                                            <ListGroup.Item
-                                                as="li"
-                                                className="d-flex justify-content-between align-items-start"
-                                            >
-                                                <div className="text-secondary">
-                                                <div className="text-primary"> Origin</div>
-                                                <div>{route.origin}</div>
-                                                </div>
-                                                <div className="text-secondary">
-                                                <div className="text-primary"> Destination</div>
-                                                <div>{route.destination}</div>
-                                                </div>
-                                            </ListGroup.Item>
-                                        </ListGroup>
+                                  <Row key={route.id} className='border py-3'>
+                                    <Col> 
+                                        <div>{route.origin} - {route.destination}</div>
+                                        <div>{route.departure_time}</div>
                                     </Col>
                                     <Col>
-                                        <ListGroup as="ol">
-                                            <ListGroup.Item
-                                                as="li"
-                                                className="d-flex justify-content-between align-items-start"
-                                            >
-                                                <div className="text-primary">Bus N°</div>
-                                                <div bg="primary" className='text-secondary'>
-                                                P0003
-                                                </div>
-                                            </ListGroup.Item>
-                                            <ListGroup.Item
-                                                as="li"
-                                                className="d-flex justify-content-between align-items-start"
-                                            >
-                                                <div className="text-primary">Type</div>
-                                                <div bg="primary" className='text-secondary'>
-                                                {route.type}
-                                                </div>
-                                            </ListGroup.Item>
-                                            <ListGroup.Item
-                                                as="li"
-                                                className="d-flex justify-content-between align-items-start"
-                                            >
-                                                <div className="text-primary">Price</div>
-                                                <div bg="primary" className='text-secondary'>
-                                                5000 FCFA
-                                                </div>
-                                            </ListGroup.Item>
-                                        </ListGroup>
+                                        <ul>
+                                            <li>Bus Number: {route.id}</li>
+                                            <li>{route.type}</li>
+                                        </ul>
                                     </Col>
-                                </Row>
+                                    <Col>
+                                        <li>Price: {route.price}</li>
+                                        <Button style={{width: "120px"}} variant="primary">
+                                            Choose
+                                        </Button>
+                                    </Col>
+                                  </Row>
                             ))
                             }
-
-                        <Row className='pt-5'>
-                            <Col>
-                                <Form.Label htmlFor="from">First Name</Form.Label>
-                                <Form.Control className='py-3 fs-5' name='from' type="text" placeholder="First Name" required />
-                            </Col>
-                            <Col>
-                                <Form.Label htmlFor="to">Last Name</Form.Label>
-                                <Form.Control className='py-3 fs-5' type="text" placeholder="Last Name" name='to' required />
-                            </Col>
-                            <Col>
-                                <Form.Label htmlFor="date">Date of birth</Form.Label>
-                                <Form.Control className='fs-5' style={{paddingBlock: "9px", borderColor: "lightgrey", color: 'darkgray'}} type="date" name='date' required/>
-                            </Col>
-                        </Row>
-                        <Row className='py-4'>
-                            <Col>
-                                <Form.Label htmlFor="id">ID Number</Form.Label>
-                                <Form.Control className='py-3 fs-5' type="text" placeholder="ID Number" name='id' required />
-                            </Col>
-                            <Col>
-                                <Form.Label htmlFor="phone">Phone</Form.Label>
-                                <Form.Control className='py-3 fs-5' type="tel" placeholder="phone" name='phone' required />
-                            </Col>
-                            <Col>
-                                <Form.Label htmlFor="email">Email</Form.Label>
-                                <Form.Control className='py-3 fs-5' type="email" name='email' placeholder="email" />
-                            </Col>
-                        </Row>
-                        <div className='d-flex justify-content-end'>
-                            <Button className='m-50' style={{width: "10%", paddingBlock: "10px", }} variant="primary" onClick={handleReserve}>
-                                Reserve Now
-                            </Button>
-                        </div>
                     </Modal.Body>
                 </Modal>
             </Row>
