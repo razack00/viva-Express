@@ -41,8 +41,6 @@ function BookingSection({travelSearchList}) {
         }
     }
 
-    console.log(routes)
-
     // validating reservations
     const handleReserve = () => {
         alert("Seat successfully reserved!")
